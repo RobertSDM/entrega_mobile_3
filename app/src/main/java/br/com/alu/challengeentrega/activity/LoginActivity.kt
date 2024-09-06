@@ -29,31 +29,37 @@ class LoginActivity : Activity() {
         val linkRegistrarTela = findViewById<TextView>(R.id.entre_text)
         val linkRecuperarSenha = findViewById<TextView>(R.id.esqueci_senha_text)
 
-        val recuperarSenhaActivity = Intent(this, RecuperarSenhaActivity::class.java)
+        val recuperarSenhaActivity = Intent(this@LoginActivity, RecuperarSenhaActivity::class.java)
         val btnEntrar = findViewById<Button>(R.id.button_entrar)
         val email = findViewById<EditText>(R.id.email_input)
         val senha = findViewById<EditText>(R.id.senha_input)
-        val AnaliseMercadoActivity = Intent(this, LoginActivity::class.java)
+        val analiseMercadoActivity = Intent(this@LoginActivity, AnaliseMercadoActivity::class.java)
 
         val gson = Gson()
         val client = OkHttpClient()
 
         val registerURL = "https://backend-challenge-mobile.vercel.app/auth/login"
 
-        btnEntrar.setOnClickListener{
-            if(!Validations.validadeEmail(email.text.toString())){
-                val toast = Toast.makeText(
-                    this@LoginActivity,
-                    "O email é inválido", Toast.LENGTH_LONG
-                )
-                toast.show()
+        btnEntrar.setOnClickListener {
+            if (!Validations.validadeEmail(email.text.toString())) {
+                runOnUiThread {
+
+                    val toast = Toast.makeText(
+                        this@LoginActivity,
+                        "O email é inválido", Toast.LENGTH_LONG
+                    )
+                    toast.show()
+                }
                 return@setOnClickListener
-            }else if(senha.text.toString().isEmpty()){
-                val toast = Toast.makeText(
-                    this@LoginActivity,
-                    "As senhas não são iguais", Toast.LENGTH_LONG
-                )
-                toast.show()
+            } else if (senha.text.toString().isEmpty()) {
+
+                runOnUiThread {
+                    val toast = Toast.makeText(
+                        this@LoginActivity,
+                        "A senha não pode ser nula", Toast.LENGTH_LONG
+                    )
+                    toast.show()
+                }
                 return@setOnClickListener
             }
 
@@ -71,30 +77,33 @@ class LoginActivity : Activity() {
 
             val response = object : Callback {
                 override fun onFailure(call: Call, e: IOException) {
-                    Log.e("ERROR-REGISTRAR", e.message.toString())
+                    Log.e("ERROR-LOGIN", e.message.toString())
                 }
 
                 override fun onResponse(call: Call, response: Response) {
-                    Log.v("CONTEUDO", response.body?.string()!!)
-                    if(response.code == 200){
-                        val toast = Toast.makeText(
-                            this@LoginActivity,
-                            "Registrado com sucesso", Toast.LENGTH_LONG
-                        )
-                        toast.show()
+                    if (response.code == 200) {
+                        analiseMercadoActivity.putExtra("email", email.text.toString())
+                        startActivity(analiseMercadoActivity)
+                    } else {
+                        runOnUiThread {
 
-                        startActivity(AnaliseMercadoActivity)
+                            val toast = Toast.makeText(
+                                this@LoginActivity,
+                                "Senha ou email são inválidos", Toast.LENGTH_LONG
+                            )
+                            toast.show()
+                        }
                     }
                 }
             }
             client.newCall(request).enqueue(response)
         }
 
-        linkRecuperarSenha.setOnClickListener{
+        linkRecuperarSenha.setOnClickListener {
             startActivity(recuperarSenhaActivity)
         }
 
-        linkRegistrarTela.setOnClickListener{
+        linkRegistrarTela.setOnClickListener {
             val registrarActivity = Intent(this, RegistrarActivity::class.java)
             startActivity(registrarActivity)
         }
