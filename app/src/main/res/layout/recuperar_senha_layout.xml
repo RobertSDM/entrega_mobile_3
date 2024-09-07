@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/nome"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="192dp"
@@ -39,8 +39,8 @@
         android:layout_marginBottom="4dp"
         android:text="@string/recSenha_confirmar_nova_senha_label"
         android:textColor="@color/dark_purple"
-        app:layout_constraintBottom_toTopOf="@+id/corfirmar_nova_senha"
-        app:layout_constraintStart_toStartOf="@+id/corfirmar_nova_senha" />
+        app:layout_constraintBottom_toTopOf="@+id/confirmar_nova_senha"
+        app:layout_constraintStart_toStartOf="@+id/confirmar_nova_senha" />
 
     <TextView
         android:id="@+id/textView7"
@@ -72,10 +72,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
         android:text="@string/recSenha_trocar_senha_btn"
-        app:layout_constraintEnd_toEndOf="@+id/corfirmar_nova_senha"
+        app:layout_constraintEnd_toEndOf="@+id/confirmar_nova_senha"
         app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="@+id/corfirmar_nova_senha"
-        app:layout_constraintTop_toBottomOf="@+id/corfirmar_nova_senha" />
+        app:layout_constraintStart_toStartOf="@+id/confirmar_nova_senha"
+        app:layout_constraintTop_toBottomOf="@+id/confirmar_nova_senha" />
 
     <TextView
         android:id="@+id/recSenha_label_email"
@@ -84,11 +84,11 @@
         android:layout_marginBottom="4dp"
         android:text="@string/recSenha_email_label"
         android:textColor="@color/dark_purple"
-        app:layout_constraintBottom_toTopOf="@+id/nome"
-        app:layout_constraintStart_toStartOf="@+id/nome" />
+        app:layout_constraintBottom_toTopOf="@+id/email"
+        app:layout_constraintStart_toStartOf="@+id/email" />
 
     <EditText
-        android:id="@+id/corfirmar_nova_senha"
+        android:id="@+id/confirmar_nova_senha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
@@ -116,9 +116,9 @@
         android:layout_marginTop="28dp"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/nome"
+        app:layout_constraintEnd_toEndOf="@+id/email"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/nome"
-        app:layout_constraintTop_toBottomOf="@+id/nome" />
+        app:layout_constraintStart_toStartOf="@+id/email"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

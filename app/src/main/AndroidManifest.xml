@@ -23,5 +23,6 @@
         <activity android:name=".activity.RegistrarActivity" android:exported="true"/>
         <activity android:name=".activity.RecuperarSenhaActivity" android:exported="true"/>
         <activity android:name=".activity.AnaliseMercadoActivity" android:exported="true"/>
+        <activity android:name=".activity.ConfiguracaoActivity" android:exported="true"/>
     </application>
 </manifest>

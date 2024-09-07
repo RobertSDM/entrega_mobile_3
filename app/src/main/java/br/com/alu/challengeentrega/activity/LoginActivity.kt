@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import br.com.alu.challengeentrega.R
 import br.com.alu.challengeentrega.utils.Validations
 import com.google.gson.Gson
@@ -20,11 +21,10 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 import okio.IOException
 
-class LoginActivity : Activity() {
+class LoginActivity : AppCompatActivity(R.layout.login_layout) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.login_layout)
 
         val linkRegistrarTela = findViewById<TextView>(R.id.entre_text)
         val linkRecuperarSenha = findViewById<TextView>(R.id.esqueci_senha_text)
@@ -34,6 +34,12 @@ class LoginActivity : Activity() {
         val email = findViewById<EditText>(R.id.email_input)
         val senha = findViewById<EditText>(R.id.senha_input)
         val analiseMercadoActivity = Intent(this@LoginActivity, AnaliseMercadoActivity::class.java)
+
+        val emailIntent = intent.getStringExtra("email") != null
+
+        if(emailIntent){
+            email.setText(intent.getStringExtra("email"))
+        }
 
         val gson = Gson()
         val client = OkHttpClient()

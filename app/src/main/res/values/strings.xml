@@ -37,6 +37,7 @@
     <string name="anMercado_taxa_redirecionamento">Taxa de redirecionamento de anuncios marketing</string>
     <string name="anMercado_filtro_tempo_cliques">Última semana</string>
     <string name="anMercado_time_label">min</string>
+    <string name="anMercado_config_btn">Configuração</string>
 <!--  Recuperar Senha Tela  -->
     <string name="recSenha_title">Esqueci a senha</string>
     <string name="recSenha_email_label">Email</string>
