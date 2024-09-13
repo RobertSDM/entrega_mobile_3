@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteX="2dp"
+    tools:layout_editor_absoluteY="-72dp">
 
     <TextView
         android:id="@+id/textView"
@@ -20,12 +22,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="372dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="80dp"
+        android:layout_width="187dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="84dp"
         android:background="@color/dark_purple"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
@@ -57,19 +58,21 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="150dp"
-        android:layout_height="82dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="160dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="28dp"
         android:background="@color/light_gray"
-        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintStart_toEndOf="@+id/constraintLayout">
 
         <TextView
             android:id="@+id/title_card_taxa_navegacao"
-            android:layout_width="129dp"
-            android:layout_height="28dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="12dp"
+            android:layout_width="145dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
             android:text="@string/anMercado_tempo_medio_navegacao"
             android:textColor="@color/dark_purple"
             android:textSize="12sp"
@@ -80,7 +83,7 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="8dp"
             android:text="min"
             android:textColor="@color/dark_purple"
             android:textSize="20sp"
@@ -105,13 +108,13 @@
         android:id="@+id/title_taxa_redirecionamento"
         android:layout_width="343dp"
         android:layout_height="50dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="48dp"
         android:text="@string/anMercado_taxa_redirecionamento"
         android:textAlignment="center"
         android:textColor="@color/dark_purple"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.529"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2" />
 
@@ -119,12 +122,13 @@
         android:id="@+id/taxa_redirecionamento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:text="60%"
         android:textColor="@color/dark_purple"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/title_taxa_redirecionamento"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/title_taxa_redirecionamento"
         app:layout_constraintTop_toBottomOf="@+id/title_taxa_redirecionamento"
         tools:text="60%" />
@@ -134,10 +138,11 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="173dp"
         android:layout_height="19dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:progress="60"
         android:progressTint="@color/dark_purple"
         app:layout_constraintEnd_toEndOf="@+id/title_taxa_redirecionamento"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="@+id/title_taxa_redirecionamento"
         app:layout_constraintTop_toBottomOf="@+id/taxa_redirecionamento" />
 
@@ -145,10 +150,10 @@
         android:id="@+id/analise_mercado_config_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="232dp"
         android:text="@string/anMercado_config_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 

@@ -31,7 +31,7 @@
     <string name="registrar_entre_link_text">Entre</string>
     <string name="registrar_title">Registrar</string>
 <!--  Analise Mercado Tela  -->
-    <string name="anMercado_title">Analise Mercado</string>
+    <string name="anMercado_title">Analise de Mercado</string>
     <string name="anMercado_cliques_convertidos">Cliques Convertidos</string>
     <string name="anMercado_tempo_medio_navegacao">Tempo medio navegacao continua</string>
     <string name="anMercado_taxa_redirecionamento">Taxa de redirecionamento de anuncios marketing</string>

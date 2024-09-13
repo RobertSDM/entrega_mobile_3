@@ -28,23 +28,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_input" />
 
-    <CheckBox
-        android:id="@+id/lembrar_de_mim_input"
-        android:layout_width="115dp"
-        android:layout_height="34dp"
-        android:checked="false"
-        android:text="@string/login_lembrar_de_mim_text"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="@+id/senha_input"
-        app:layout_constraintTop_toBottomOf="@+id/senha_input" />
-
     <TextView
         android:id="@+id/esqueci_senha_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:text="@string/login_esqueci_a_senha_text"
+        android:textColor="@color/primary_purple"
         android:textSize="12sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/senha_input"
         app:layout_constraintTop_toBottomOf="@+id/senha_input" />
 
@@ -52,11 +44,11 @@
         android:id="@+id/button_entrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="120dp"
         android:text="@string/login_entrar_btn_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lembrar_de_mim_input" />
+        app:layout_constraintTop_toBottomOf="@+id/esqueci_senha_text" />
 
     <TextView
         android:id="@+id/login_calltoaction"
@@ -74,6 +66,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="@string/login_registres_se_link_text"
+        android:textColor="@color/primary_purple"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_calltoaction" />
