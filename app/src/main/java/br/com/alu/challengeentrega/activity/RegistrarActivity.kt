@@ -1,6 +1,5 @@
 package br.com.alu.challengeentrega.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,44 +9,42 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.alu.challengeentrega.R
+import br.com.alu.challengeentrega.fetcher.empresa.UsuarioFetcher
 import br.com.alu.challengeentrega.utils.Validations
-import com.google.gson.Gson
-import okhttp3.Call
-import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.Response
 import okio.IOException
 
 class RegistrarActivity : AppCompatActivity(R.layout.registrar_layout) {
+    private val usuarioFetcher = UsuarioFetcher()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val linkLoginTela = findViewById<TextView>(R.id.entre_text)
-        val btnEntrar = findViewById<Button>(R.id.button_registrar)
+        val loginActivity = Intent(this@RegistrarActivity, LoginActivity::class.java)
+
         val nome = findViewById<EditText>(R.id.nome_registrar)
         val email = findViewById<EditText>(R.id.email_registrar)
         val senha = findViewById<EditText>(R.id.senha_registrar)
         val confirmarSenha = findViewById<EditText>(R.id.confirmar_senha_registrar)
-        val loginActivity = Intent(this@RegistrarActivity, LoginActivity::class.java)
+        val linkLoginTela = findViewById<TextView>(R.id.entre_text)
 
-        val gson = Gson()
-        val client = OkHttpClient()
+        val btnEntrar = findViewById<Button>(R.id.button_registrar)
 
-        val registerURL = "https://backend-challenge-mobile.vercel.app/auth/register"
-
-        btnEntrar.setOnClickListener{
-            if(!Validations.validadeEmail(email.text.toString())){
+        btnEntrar.setOnClickListener {
+            if (!Validations.validadeEmail(email.text.toString())) {
                 val toast = Toast.makeText(
                     this@RegistrarActivity,
                     "O email é inválido", Toast.LENGTH_LONG
                 )
                 toast.show()
                 return@setOnClickListener
-            }else if(!Validations.validateTwoStrings(senha.text.toString(), confirmarSenha.text.toString()) &&
-                (senha.text.toString().isEmpty() || confirmarSenha.text.toString().isEmpty())){
+            } else if (!Validations.validateTwoStrings(
+                    senha.text.toString(),
+                    confirmarSenha.text.toString()
+                ) ||
+                (senha.text.toString().isEmpty() || confirmarSenha.text.toString().isEmpty())
+            ) {
 
                 val toast = Toast.makeText(
                     this@RegistrarActivity,
@@ -65,28 +62,38 @@ class RegistrarActivity : AppCompatActivity(R.layout.registrar_layout) {
                 }
             """.trimIndent()
 
-            val request = Request.Builder()
-                .url(registerURL)
-                .post(body.toRequestBody("application/json".toMediaTypeOrNull()))
-                .build()
-
-            val response = object : Callback{
-                override fun onFailure(call: Call, e: IOException) {
-                    Log.e("ERROR-REGISTRAR", e.message.toString())
-                }
-
-                override fun onResponse(call: Call, response: Response) {
-                    Log.v("CONTEUDO", response.body?.string()!!)
-                    if(response.code == 200){
+            try {
+                usuarioFetcher.createUsuario(body.toRequestBody("application/json".toMediaTypeOrNull())) { response ->
+                    if (response.code == 200) {
                         loginActivity.putExtra("email", email.text.toString())
                         startActivity(loginActivity)
+                    } else {
+                        Log.v("[ERROR-API]", response.body?.string().toString())
+                        runOnUiThread {
+                            val toast = Toast.makeText(
+                                this@RegistrarActivity,
+                                "Erro ao criar o usuario", Toast.LENGTH_LONG
+                            )
+                            toast.show()
+                        }
                     }
                 }
+
+            } catch (err: IOException) {
+
+                Log.v("[ERROR-API]", err.message.toString())
+                runOnUiThread {
+                    val toast = Toast.makeText(
+                        this@RegistrarActivity,
+                        "Error ao realizar a requisicao", Toast.LENGTH_LONG
+                    )
+                    toast.show()
+                }
+
             }
-            client.newCall(request).enqueue(response)
         }
 
-        linkLoginTela.setOnClickListener{
+        linkLoginTela.setOnClickListener {
             startActivity(loginActivity)
         }
 

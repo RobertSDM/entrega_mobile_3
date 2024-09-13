@@ -1,6 +1,5 @@
 package br.com.alu.challengeentrega.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,31 +9,27 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.alu.challengeentrega.R
+import br.com.alu.challengeentrega.fetcher.empresa.UsuarioFetcher
 import br.com.alu.challengeentrega.utils.Validations
-import okhttp3.Call
-import okhttp3.Callback
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.Response
 import okio.IOException
 
 class RecuperarSenhaActivity : AppCompatActivity(R.layout.recuperar_senha_layout) {
+    private val usuarioFetcher = UsuarioFetcher()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val loginActivity = Intent(this@RecuperarSenhaActivity, LoginActivity::class.java)
 
         val email = findViewById<EditText>(R.id.email)
         val novaSenha = findViewById<EditText>(R.id.nova_senha)
         val confirmarNovaSenha = findViewById<EditText>(R.id.confirmar_nova_senha)
-        val btnTrocarSenha = findViewById<Button>(R.id.trocar_senha_btn)
+
         val linkLoginActivity = findViewById<TextView>(R.id.textView7)
 
-        val loginActivity = Intent(this@RecuperarSenhaActivity, LoginActivity::class.java)
-
-        val client = OkHttpClient()
-
-        val url = "https://backend-challenge-mobile.vercel.app/auth/pass_forgot"
+        val btnTrocarSenha = findViewById<Button>(R.id.trocar_senha_btn)
 
         btnTrocarSenha.setOnClickListener {
             if (!Validations.validadeEmail(email.text.toString())) {
@@ -67,25 +62,33 @@ class RecuperarSenhaActivity : AppCompatActivity(R.layout.recuperar_senha_layout
                 }
             """.trimIndent()
 
-            val request = Request.Builder()
-                .url(url)
-                .put(body.toRequestBody("application/json".toMediaTypeOrNull()))
-                .build()
-
-            val response = object : Callback {
-                override fun onFailure(call: Call, e: IOException) {
-                    Log.e("ERROR-REGISTRAR", e.message.toString())
-                }
-
-                override fun onResponse(call: Call, response: Response) {
-                    Log.v("CONTEUDO", response.body?.string()!!)
+            try {
+                usuarioFetcher.updateSenha(body.toRequestBody("application/json".toMediaTypeOrNull())) { response ->
                     if (response.code == 200) {
                         loginActivity.putExtra("email", email.text.toString())
                         startActivity(loginActivity)
+                    } else {
+                        Log.v("[ERROR-API]", response.body?.string().toString())
+                        runOnUiThread {
+                            val toast = Toast.makeText(
+                                this@RecuperarSenhaActivity,
+                                "Erro ao atualizar a senha", Toast.LENGTH_LONG
+                            )
+                            toast.show()
+                        }
                     }
                 }
+            } catch (err: IOException) {
+                Log.v("[ERROR-API]", err.message.toString())
+                runOnUiThread {
+                    val toast = Toast.makeText(
+                        this@RecuperarSenhaActivity,
+                        "Error ao realizar a requisicao", Toast.LENGTH_LONG
+                    )
+                    toast.show()
+                }
             }
-            client.newCall(request).enqueue(response)
+
         }
 
         linkLoginActivity.setOnClickListener {
