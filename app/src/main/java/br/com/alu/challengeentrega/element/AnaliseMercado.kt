@@ -1,4 +1,4 @@
-package br.com.alu.challengeentrega.model
+package br.com.alu.challengeentrega.element
 
 data class AnaliseMercado(
     val id: Int,

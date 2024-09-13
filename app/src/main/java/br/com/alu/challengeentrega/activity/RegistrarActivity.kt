@@ -9,8 +9,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.alu.challengeentrega.R
-import br.com.alu.challengeentrega.fetcher.empresa.UsuarioFetcher
-import br.com.alu.challengeentrega.utils.Validations
+import br.com.alu.challengeentrega.fetcher.usuario.UsuarioFetcher
+import br.com.alu.challengeentrega.util.Validations
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
 import okio.IOException

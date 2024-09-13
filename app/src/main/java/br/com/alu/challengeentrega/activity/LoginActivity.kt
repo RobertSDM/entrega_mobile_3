@@ -1,6 +1,5 @@
 package br.com.alu.challengeentrega.activity
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,16 +9,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.alu.challengeentrega.R
-import br.com.alu.challengeentrega.fetcher.empresa.UsuarioFetcher
-import br.com.alu.challengeentrega.utils.Validations
-import com.google.gson.Gson
-import okhttp3.Call
-import okhttp3.Callback
+import br.com.alu.challengeentrega.fetcher.usuario.UsuarioFetcher
+import br.com.alu.challengeentrega.util.Validations
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.Response
 import okio.IOException
 
 class LoginActivity : AppCompatActivity(R.layout.login_layout) {

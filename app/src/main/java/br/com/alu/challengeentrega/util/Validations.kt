@@ -1,4 +1,4 @@
-package br.com.alu.challengeentrega.utils
+package br.com.alu.challengeentrega.util
 
 class Validations{
     companion object{

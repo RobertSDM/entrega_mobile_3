@@ -9,8 +9,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.alu.challengeentrega.R
-import br.com.alu.challengeentrega.fetcher.empresa.UsuarioFetcher
-import br.com.alu.challengeentrega.model.Usuario
+import br.com.alu.challengeentrega.fetcher.usuario.UsuarioFetcher
+import br.com.alu.challengeentrega.element.Usuario
 import com.google.gson.Gson
 import okio.IOException
 

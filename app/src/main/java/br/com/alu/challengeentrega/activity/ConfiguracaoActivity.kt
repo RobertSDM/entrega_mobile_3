@@ -7,7 +7,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.alu.challengeentrega.R
-import br.com.alu.challengeentrega.fetcher.empresa.UsuarioFetcher
+import br.com.alu.challengeentrega.fetcher.usuario.UsuarioFetcher
 import okio.IOException
 
 class ConfiguracaoActivity : AppCompatActivity(R.layout.login_layout) {
