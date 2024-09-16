@@ -14,7 +14,10 @@ O projeto faz parte de uma solução criada para o challenge, a parte desenvolvi
 que está sendo desenvolvido para a empresa que fizer uma assinatura com a MAI para integrarmos \
 nossos serviços à sua plataforma. \
 A finalidade deste app é criar um ambiente de facil acesso à empresa onde ela pode ver e analizar dados que coletarmos \
-sobre a sua aplicação com a integração dos com a nossa empresa.
+sobre a sua aplicação com a integração dos com a nossa empresa. \
+A aplicação é acessada através de um login, mas também permite um registro \
+temos a tela que mostra dados que nós coletamos \
+a tela de configurações e a tela que nos permite alterar a senha. \
 
 # Gigrama da Arquitetura do projeto
 
